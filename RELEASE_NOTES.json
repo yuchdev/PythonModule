@@ -1,6 +1,6 @@
 {
   "release": {
-    "download_link": "https://{}.s3.us-east-1.amazonaws.com/packages/{}-{}-py3-none-any.whl"
+    "download_link": "https://{package_name_dash}.s3.us-east-1.amazonaws.com/packages/{package_name_dash}-{version}-py3-none-any.whl"
   },
   "releases": {
     "1.0.0": {
