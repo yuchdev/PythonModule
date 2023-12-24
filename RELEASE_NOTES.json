@@ -1,0 +1,13 @@
+{
+  "release": {
+    "download_link": "https://{}.s3.us-east-1.amazonaws.com/packages/{}-{}-py3-none-any.whl"
+  },
+  "releases": {
+    "1.0.0": {
+      "release_notes": [
+        "Initial release",
+        "Add examples"
+      ]
+    }
+  }
+}
