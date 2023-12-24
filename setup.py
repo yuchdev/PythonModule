@@ -58,7 +58,7 @@ setup(
     version=VERSION,
     author="Yurii Cherkasov",
     author_email="strategarius@protonmail.com",
-    description="Python module for getting football data from Sports API",
+    description="",
     long_description=README,
     long_description_content_type="text/markdown",
     url=GITHUB_URL,
