@@ -30,14 +30,22 @@ def replace_template_name(template_name, new_module_name, new_description, autho
     Replace template name with new module name in all files
     """
     # Replace in setup.cfg
-    replace_in_file('setup.cfg', f'name = {template_name}', f'name = {new_module_name}')
+    old_text = f'name = {template_name}'
+    new_text = f'name = {new_module_name}'
+    replace_in_file('setup.cfg', old_text=old_text, new_text=new_text)
+    print(f"Replace '{old_text}' with '{new_text}' in setup.cfg")
 
     # Replace in README.md
-    replace_content_file('README.md', '# Python Module Repo\n\n')
+    new_content = f'# {capitalize_name(new_module_name)}\n\n{new_description}\n\n'
+    replace_content_file('README.md', new_content)
+    print(f"Replace README.md content with '{new_content.replace('\n', '\\n')}'")
 
     # Replace copyright in LICENSE
     current_year = date.today().year
-    replace_in_file('LICENSE', f'Copyright (c) 20xx {author}', f'Copyright (c) {current_year} {author}')
+    old_text = f'Copyright (c) 20xx {author}'
+    new_text = f'Copyright (c) {current_year} {author}'
+    replace_in_file('LICENSE', old_text=old_text, new_text=new_text
+    print(f"Replace '{old_text}' with '{new_text}' in LICENSE")
 
     # Replace in setup.py description
     replace_in_file('setup.py', 'description="",', f'description="{new_description}",')
