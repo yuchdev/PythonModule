@@ -58,7 +58,7 @@ setup(
     version=VERSION,
     author="Yurii Cherkasov",
     author_email="strategarius@protonmail.com",
-    description="",
+    description=None,
     long_description=README,
     long_description_content_type="text/markdown",
     url=GITHUB_URL,

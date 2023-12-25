@@ -2,7 +2,6 @@ import argparse
 import fileinput
 import subprocess
 from datetime import date
-from tkinter.tix import _dummyExFileSelectBox
 
 DEFAULT_AUTHOR = "Yurii Cherkasov"
 DEFAULT_EMAIL = "strategarius@protonmail.com"
@@ -38,17 +37,20 @@ def replace_template_name(template_name, new_module_name, new_description, autho
     # Replace in README.md
     new_content = f'# {capitalize_name(new_module_name)}\n\n{new_description}\n\n'
     replace_content_file('README.md', new_content)
-    print(f"Replace README.md content with '{new_content.replace('\n', '\\n')}'")
+    # Can't use f-string with //n
+    print("Replace README.md content with '{}'".format(new_content.replace('\n', '\\n')))
 
     # Replace copyright in LICENSE
     current_year = date.today().year
     old_text = f'Copyright (c) 20xx {author}'
     new_text = f'Copyright (c) {current_year} {author}'
-    replace_in_file('LICENSE', old_text=old_text, new_text=new_text
+    replace_in_file('LICENSE', old_text=old_text, new_text=new_text)
     print(f"Replace '{old_text}' with '{new_text}' in LICENSE")
 
     # Replace in setup.py description
-    replace_in_file('setup.py', 'description="",', f'description="{new_description}",')
+    old_text = '    description=None,'
+    new_text = f'    description="{new_description}",'
+    replace_in_file('setup.py', old_text=old_text, new_text=new_text)
 
     # Git move src/python_module to src/new_module_name
     subprocess.run(['git', 'mv', f'src/{template_name}', f'src/{new_module_name}'])
@@ -57,13 +59,15 @@ def replace_template_name(template_name, new_module_name, new_description, autho
     subprocess.run(['git', 'mv', f'test/{template_name}_test.py', f'test/{new_module_name}_test.py'])
 
     # In renamed file test/new_module_name_test.py
-    replace_in_file(f'test/{new_module_name}_test.py', 'class PythonModuleTest(unittest.TestCase):',
-                    f'class {capitalize_name(new_module_name)}Test(unittest.TestCase):')
+    old_text = 'class PythonModuleTest(unittest.TestCase):'
+    new_text = f'class {capitalize_name(new_module_name)}Test(unittest.TestCase):'
+    replace_in_file(f'test/{new_module_name}_test.py', old_text, new_text)
+    print(f"Replace '{old_text}' with '{new_text}' in test/{new_module_name}_test.py")
 
 
 def capitalize_name(name):
     # Capitalize each word in the name
-    return '_'.join(word.capitalize() for word in name.split('_'))
+    return ' '.join(word.capitalize() for word in name.split('_'))
 
 
 def main():
