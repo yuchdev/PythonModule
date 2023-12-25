@@ -80,9 +80,9 @@ def main():
     """
     parser = argparse.ArgumentParser(description='Update GitHub Python module template')
     parser.add_argument('new_module_name', help='New name for the Python module (with underscores)')
-    parser.add_argument('--description', help='New description for the Python module', default='')
-    parser.add_argument('--author', help='New author name', default=DEFAULT_AUTHOR)
-    parser.add_argument('--email', help='New author email', default=DEFAULT_EMAIL)
+    parser.add_argument('--module-description', help='New description for the Python module', default='')
+    parser.add_argument('--author-name', help='New author name', default=DEFAULT_AUTHOR)
+    parser.add_argument('--author-email', help='New author email', default=DEFAULT_EMAIL)
     args = parser.parse_args()
 
     template_name = 'python_module'
