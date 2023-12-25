@@ -28,6 +28,10 @@ def replace_template_name(template_name, new_module_name, new_description, autho
     """
     Replace template name with new module name in all files
     """
+    capitalized_name = capitalize_name(new_module_name)
+    print(f"Replace name to {new_module_name} in all files")
+    print(f'User-friendly name: {capitalized_name}')
+
     # Replace in setup.cfg
     old_text = f'name = {template_name}'
     new_text = f'name = {new_module_name}'
@@ -35,7 +39,7 @@ def replace_template_name(template_name, new_module_name, new_description, autho
     print(f"Replace '{old_text}' with '{new_text}' in setup.cfg")
 
     # Replace in README.md
-    new_content = f'# {capitalize_name(new_module_name)}\n\n{new_description}\n\n'
+    new_content = f'# {capitalized_name}\n\n{new_description}\n\n'
     replace_content_file('README.md', new_content)
     # Can't use f-string with //n
     print("Replace README.md content with '{}'".format(new_content.replace('\n', '\\n')))
