@@ -95,7 +95,7 @@ def main():
 
     # Git commit
     subprocess.run(['git', 'commit', '--all', '--message',
-                    f'Initialize template with name {args.new_module_name} and description "{args.description}"'])
+                    f'Initialize template with name {args.new_module_name} and description "{args.module_description}"'])
     return 0
 
 
