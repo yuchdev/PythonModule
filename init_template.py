@@ -90,8 +90,8 @@ def main():
     # Replace with the actual template name
     replace_template_name(template_name=template_name,
                           new_module_name=args.new_module_name,
-                          new_description=args.description,
-                          author=args.author)
+                          new_description=args.module_description,
+                          author=args.author_name)
 
     # Git commit
     subprocess.run(['git', 'commit', '--all', '--message',
