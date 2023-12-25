@@ -220,6 +220,10 @@ def tmp_release_notes():
     release_url = url_template.format(version=VERSION,
                                       package_name=PACKAGE_NAME,
                                       package_name_dash=PACKAGE_NAME_DASH)
+    print(f'Last release notes: {last_release}')
+    print(f'Download URL template: {url_template}')
+    print(f'Download URL: {release_url}')
+
     # create a temporary release notes file
     with open(release_md, 'w') as release_tmp:
         release_tmp.write('## Release notes\n')
